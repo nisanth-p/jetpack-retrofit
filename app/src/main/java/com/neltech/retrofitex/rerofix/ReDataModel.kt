@@ -1,4 +1,4 @@
-package com.neltech.retrofitex
+package com.neltech.retrofitex.rerofix
 
 data class ReqDataModel(var name:String, var job:String){
     fun request(){
