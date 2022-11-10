@@ -34,9 +34,10 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.ktx.Firebase
 import com.neltech.retrofitex.R
 
+private const val TAG = "LoginSceen"
 @Composable
 fun LoginScreen(viewModelOb: LoginScreenViewModel = viewModel()) {
-    
+
     var userEmail by remember { mutableStateOf("") }
     var userPassword by remember { mutableStateOf("") }
     val snackbarHostState = remember { SnackbarHostState() }
@@ -111,7 +112,9 @@ fun LoginScreen(viewModelOb: LoginScreenViewModel = viewModel()) {
                     )
 
                     Button(
-                        modifier = Modifier.fillMaxWidth().height(50.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                         enabled = userEmail.isNotEmpty() && userPassword.isNotEmpty(),
                         content = {
                             Text(text = "Login")
@@ -133,15 +136,17 @@ fun LoginScreen(viewModelOb: LoginScreenViewModel = viewModel()) {
                     val context = LocalContext.current
                     val token = stringResource(R.string.default_web_client_id1)
 
-                    OutlinedButton(
+                   /* OutlinedButton(
                         border = ButtonDefaults.outlinedBorder.copy(width = 1.dp),
-                        modifier = Modifier.fillMaxWidth().height(50.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp),
                         onClick = {
                             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                                 .requestIdToken(token)
                                 .requestEmail()
                                 .build()
-
+                            Log.d(TAG, "LoginScreen: token ="+token)
                             val googleSignInClient = GoogleSignIn.getClient(context, gso)
                             launcher.launch(googleSignInClient.signInIntent)
                         },
@@ -169,7 +174,7 @@ fun LoginScreen(viewModelOb: LoginScreenViewModel = viewModel()) {
                                 }
                             )
                         }
-                    )
+                    )*/
 
                     when(state.status) {
                         LoadingState.Status.SUCCESS -> {
